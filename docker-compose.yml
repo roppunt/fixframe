@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  fixframe:
+    build: .
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/config/.env
+    volumes:
+      - ./data:/app/data
+      - ./backend/storage:/app/backend/storage

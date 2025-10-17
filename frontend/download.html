@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download je herstelde bestand — FixFrame</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container" style="padding: 6rem 0; text-align: center;">
+      <h1>Download je herstelde bestand</h1>
+      <p id="info">We controleren je link…</p>
+      <a id="downloadLink" class="btn-secondary" href="#" style="display: none;">Download bestand</a>
+      <p id="error" class="status"></p>
+    </main>
+    <script>
+      /**
+       * Controleert of de downloadlink geldig is en toont indien mogelijk de downloadknop.
+       */
+      async function init() {
+        const params = new URLSearchParams(window.location.search);
+        const jobId = params.get('jobId');
+        const token = params.get('token');
+        if (!jobId || !token) {
+          document.getElementById('info').textContent =
+            'Deze downloadlink is ongeldig. Controleer je e-mail of neem contact op met support@fixframe.nl.';
+          return;
+        }
+        const link = `/api/download/${jobId}?token=${encodeURIComponent(token)}`;
+        try {
+          const response = await fetch(link, { method: 'HEAD' });
+          if (response.ok) {
+            document.getElementById('info').textContent = 'Je bestand is klaar. Klik hieronder om te downloaden.';
+            const anchor = document.getElementById('downloadLink');
+            anchor.href = link;
+            anchor.style.display = 'inline-block';
+          } else {
+            document.getElementById('info').textContent = 'We konden je bestand niet vinden.';
+            document.getElementById('error').textContent =
+              'Mogelijk is de link verlopen of reeds gedownload. Neem contact op als je hulp nodig hebt.';
+          }
+        } catch (error) {
+          document.getElementById('info').textContent = 'Er ging iets mis tijdens het ophalen van je bestand.';
+        }
+      }
+      init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Corrupt bestand herstellen — FixFrame repareert foto’s en video’s voor € 4,95. Geen abonnement. Veilig en snel."
+    />
+    <title>FixFrame — Herstel je foto of video</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Herstel je foto of video voor € 4,95 — zonder abonnement.</h1>
+        <p>Upload je beschadigde bestand en ontvang binnen 24 uur een herstelde versie of je geld terug.</p>
+        <button id="cta" class="btn-primary">Upload &amp; herstel nu</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="upload" class="container">
+        <h2>Start je herstel in 3 eenvoudige stappen</h2>
+        <ol class="steps">
+          <li><strong>Upload</strong> je beschadigde bestand (foto of video).</li>
+          <li><strong>Betaal</strong> veilig via iDEAL of creditcard.</li>
+          <li><strong>Download</strong> je herstelde bestand binnen 24 uur.</li>
+        </ol>
+        <form id="uploadForm" class="card">
+          <label for="email">E-mailadres*</label>
+          <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl" />
+
+          <label for="file">Bestand (max. 4 GB)</label>
+          <input type="file" id="file" name="file" required />
+
+          <div class="progress">
+            <div id="progressBar"></div>
+          </div>
+
+          <button type="submit" class="btn-primary">Bestand uploaden</button>
+          <p id="statusMessage" class="status"></p>
+        </form>
+
+        <div id="summary" class="card hidden">
+          <h3>Samenvatting</h3>
+          <p><strong>Bestand:</strong> <span id="summaryFile"></span></p>
+          <p><strong>Prijs:</strong> € <span id="summaryPrice">4,95</span></p>
+          <button id="payButton" class="btn-secondary">Betaal en start herstel</button>
+          <p id="paymentMessage" class="status"></p>
+        </div>
+      </section>
+
+      <section class="info-block">
+        <div class="container">
+          <h2>Waarom FixFrame?</h2>
+          <div class="grid">
+            <div>
+              <h3>Geen abonnement</h3>
+              <p>Betaal alleen wanneer je een bestand wilt laten herstellen. Geen kleine lettertjes.</p>
+            </div>
+            <div>
+              <h3>Veilig &amp; privé</h3>
+              <p>We versleutelen elk bestand en verwijderen het automatisch na 30 dagen.</p>
+            </div>
+            <div>
+              <h3>Professionele tools</h3>
+              <p>We gebruiken bewezen open-source software zoals ffmpeg en exiftool.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-block light">
+        <div class="container">
+          <h2>Ondersteunde formaten</h2>
+          <p>JPG, JPEG, PNG, HEIC, GIF, MP4, MOV, AVI en MKV tot maximaal 4 GB.</p>
+        </div>
+      </section>
+
+      <section class="container">
+        <h2>Veelgestelde vragen</h2>
+        <div class="faq">
+          <details>
+            <summary>Hoe snel is mijn bestand hersteld?</summary>
+            <p>Meestal ontvang je binnen 24 uur een downloadlink. Bij drukte laten we het direct weten.</p>
+          </details>
+          <details>
+            <summary>Wat als het herstel niet lukt?</summary>
+            <p>Dan ontvang je automatisch je geld terug. We mailen je ook als handmatige hulp nodig is.</p>
+          </details>
+          <details>
+            <summary>Zijn mijn gegevens veilig?</summary>
+            <p>Alle bestanden worden versleuteld opgeslagen en na 30 dagen gewist. We delen niets met derden.</p>
+          </details>
+          <details>
+            <summary>Welke betaalmethoden ondersteunen jullie?</summary>
+            <p>Via Stripe ondersteunen we iDEAL, Bancontact, creditcard en meer. Alles voor eenmalige betalingen.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="info-block">
+        <div class="container">
+          <h2>Privacy &amp; garantie</h2>
+          <p>Je bestanden blijven altijd van jou. FixFrame geeft je volledige controle en verwijdert alles automatisch na 30 dagen.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> FixFrame. Alle rechten voorbehouden.</p>
+        <a href="mailto:support@fixframe.nl">support@fixframe.nl</a>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

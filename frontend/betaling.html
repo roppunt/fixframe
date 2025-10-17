@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Betaling bevestigd — FixFrame</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container" style="padding: 6rem 0; text-align: center;">
+      <h1>Bedankt voor je betaling!</h1>
+      <p id="message">We starten direct met het herstellen van je bestand.</p>
+      <p>Je ontvangt een e-mail zodra het resultaat klaarstaat.</p>
+      <a class="btn-secondary" href="/">Terug naar de homepage</a>
+    </main>
+    <script>
+      /**
+       * Bevestigt bij de backend dat Stripe de betaling heeft voltooid.
+       */
+      async function confirm() {
+        const params = new URLSearchParams(window.location.search);
+        const jobId = params.get('jobId');
+        const sessionId = params.get('session_id');
+        if (!jobId || !sessionId) {
+          document.getElementById('message').textContent =
+            'We konden je betaling niet bevestigen. Neem contact op met support@fixframe.nl.';
+          return;
+        }
+        try {
+          const res = await fetch('/api/payment/confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ jobId, sessionId }),
+          });
+          if (!res.ok) {
+            document.getElementById('message').textContent =
+              'We konden je betaling niet bevestigen. Neem contact op met support@fixframe.nl.';
+          }
+        } catch (error) {
+          document.getElementById('message').textContent =
+            'We konden je betaling niet bevestigen. Neem contact op met support@fixframe.nl.';
+        }
+      }
+      confirm();
+    </script>
+  </body>
+</html>
